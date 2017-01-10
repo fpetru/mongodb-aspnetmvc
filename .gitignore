@@ -3,3 +3,10 @@
 ################################################################################
 
 /.vs
+/MongoMvc/bin/Debug/netcoreapp1.0
+/MongoMvc/obj/Debug/netcoreapp1.0
+/MongoMvc/Views/Home/Contact.cshtml
+/MongoMvc/wwwroot/lib
+/MongoMvc/MongoMvc.xproj.user
+/MongoMvc/project.lock.json
+/MongoMvc/Project_Readme.html
