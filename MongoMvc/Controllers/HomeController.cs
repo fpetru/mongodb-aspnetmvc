@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Threading.Tasks;
-using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
 
 using MongoMvc.Interfaces;
@@ -22,12 +21,13 @@ namespace MongoMvc.Controllers
             return View();
         }
 
-        public async Task<IActionResult> About()
+        public async Task<IActionResult> Read()
         {
-            ViewData["Message"] = "Your application description page.";
-            Note noteElement = await GetNoteByIdInternal("2");
+            const string nodeId = "2";
+            Note noteElement = await GetNoteByIdInternal(nodeId);
+            ViewData["Message"] = string.Format($"Note Id: {nodeId} - Body: {noteElement.Body}");
 
-            return View(noteElement.Body);
+            return View();
         }
 
         public IActionResult Init()
@@ -38,6 +38,7 @@ namespace MongoMvc.Controllers
             _noteRepository.AddNote(new Note() { Id = "3", Body = "Test note 3", CreatedOn = DateTime.Now, UpdatedOn = DateTime.Now, UserId = 2 });
             _noteRepository.AddNote(new Note() { Id = "4", Body = "Test note 4", CreatedOn = DateTime.Now, UpdatedOn = DateTime.Now, UserId = 2 });
 
+            ViewData["Message"] = string.Format($"Filled in 4 records");
             return View();
         }
 
