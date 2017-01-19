@@ -24,7 +24,7 @@ namespace MongoMvc.Controllers
         public async Task<IActionResult> Read()
         {
             const string nodeId = "2";
-            Note noteElement = await GetNoteByIdInternal(nodeId);
+            Note noteElement = await _noteRepository.GetNote(nodeId) ?? new Note();
             ViewData["Message"] = string.Format($"Note Id: {nodeId} - Body: {noteElement.Body}");
 
             return View();
@@ -40,11 +40,6 @@ namespace MongoMvc.Controllers
 
             ViewData["Message"] = string.Format($"Filled in 4 records");
             return View();
-        }
-
-        private async Task<Note> GetNoteByIdInternal(string id)
-        {
-            return await _noteRepository.GetNote(id) ?? new Note();
         }
 
         public IActionResult Error()
